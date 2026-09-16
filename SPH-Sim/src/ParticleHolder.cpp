@@ -9,7 +9,7 @@ ParticleHolder::ParticleHolder(const SimulationParams& params)
 	{
 		Particle particle;
 		particle.Position = { static_cast<float>(GetRandomValue(0, 1280)), static_cast<float>(GetRandomValue(0, 720)) };
-		particle.Velocity = { 0.0f, 0.0f };
+		particle.LastPosition = particle.Position;
 		particle.Density = 1.0f;
 		particle.Mass = 1.0f;
 
@@ -41,23 +41,25 @@ void ParticleHolder::Update()
 		Vector2 gradientOfP = GradientOfP(particle);
 		force.x = -(1 / particle.Density) * gradientOfP.x;
 		force.y = -(1 / particle.Density) * gradientOfP.y;
+		
+		//force.y -= GRAVITY * particle.Mass;
+
+		//Calculate final position, using Verlet Integration
+		Vector2 acceleration = {
+			force.x / particle.Density,
+			force.y / particle.Density 
+		};
+		Vector2 newPosition =
+			particle.Position * 2.0f
+			- particle.LastPosition
+			+ acceleration * powf(params.TimeStep, 2);
+
+		particle.LastPosition = particle.Position;
+		particle.Position = newPosition;
 
 		//Check Bounds
-		float conservationFactor = 0.9f; // To simulate energy loss on collision
-		if (particle.Position.x < 0.0f || particle.Position.x > 1280.0f)
-		{
-			particle.Velocity.x *= -conservationFactor;
-		}
-
-		if (particle.Position.y < 0.0f || particle.Position.y > 720.0f)
-		{
-			particle.Velocity.y *= -conservationFactor;
-		}
-
-		//Calculate final position
-		Vector2 acceleration = { force.x / particle.Density, force.y / particle.Density };
-		particle.Velocity += acceleration * params.TimeStep;
-		particle.Position += particle.Velocity * params.TimeStep;
+		particle.Position.x = std::max(0.0f, std::min(1280.0f, particle.Position.x));
+		particle.Position.y = std::max(0.0f, std::min(720.0f, particle.Position.y));
 	}
 }
 
@@ -71,7 +73,8 @@ void ParticleHolder::Render()
 	{
 		DrawCircleV(particle.Position, 2.0f, RED);
 		float scalar = 0.0001f;
-		DrawLine(particle.Position.x, particle.Position.y, particle.Position.x + particle.Velocity.x * scalar, particle.Position.y + particle.Velocity.y * scalar, GREEN);
+		Vector2 velocity = (particle.Position - particle.LastPosition) / params.TimeStep;
+		DrawLine(particle.Position.x, particle.Position.y, particle.Position.x + velocity.x * scalar, particle.Position.y + velocity.y * scalar, GREEN);
 	}
 }
 

@@ -4,10 +4,11 @@
 #include <vector>
 #include <raymath.h>
 
+#define GRAVITY 9.81f
+
 
 struct Particle {
-	Vector2 Position;
-	Vector2 Velocity;
+	Vector2 Position, LastPosition;
 	float Density, Mass;
 };
 
