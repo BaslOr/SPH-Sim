@@ -1,21 +1,27 @@
-#include "raylib.h"
+#include <raylib.h>
+
+#include "ParticleHolder.h"
 
 int main(void)
 {
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenWidth = 1280;
+    const int screenHeight = 720;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "SPH Simulation");
 
     SetTargetFPS(60);
+
+	ParticleHolder particleHolder;
 
     // Main game loop
     while (!WindowShouldClose())
     {
-        BeginDrawing();
+		particleHolder.Update(0.0001f);
 
-        ClearBackground(RAYWHITE);
-        DrawCircle(400, 225, 80, MAROON);
+        BeginDrawing();
+        ClearBackground(WHITE);
+
+		particleHolder.Render();
 
         EndDrawing();
     }
