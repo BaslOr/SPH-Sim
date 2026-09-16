@@ -4,14 +4,33 @@
 #include <vector>
 #include <raymath.h>
 
-#define SMOOTHING_RADIUS 200.f
-#define	STIFFNESS 20.0f
-#define AIMED_DENSITY 100.0f
 
 struct Particle {
 	Vector2 Position;
 	Vector2 Velocity;
 	float Density, Mass;
+};
+
+struct SimulationParams
+{
+	uint32_t ParticleAmount;
+
+	float SmoothingRadius;
+	float Stiffness;
+	float AimedDensity;
+	float ParticleMass;
+
+	float TimeStep;
+
+	// maybe in the future, we can add gravity to the simulation, but for now, it is not used
+	//float Gravity;
+
+	//I leave these here for future use, but they are not used in the current implementation
+	//(float) DensityKernel(float distance, float smoothingRadius);
+	//(float) PressureKernel(float distance, float smoothingRadius);
+	//(Vector2) PressureGradient(Vector2 pos_i, Vector2 pos_j, float smoothingRadius);
+
+	//bool IsRunning; // Implemented in future
 };
 
 // Used for calculating densities
@@ -40,16 +59,18 @@ static Vector2 SpikyGradient(Vector2 pos_i, Vector2 pos_j, float smoothingRadius
 
 class ParticleHolder {
 public:
-	ParticleHolder();
+	ParticleHolder(const SimulationParams& params);
 
-	void Update(float deltaTime);
+	void Update();
 	void Render();
+
+	inline void UpdateParams(const SimulationParams& newParams) { params = newParams; }
 
 private:
 	Vector2 GradientOfP(Particle& particle);
 
 private:
-	std::vector<Particle> m_Particles;
+	SimulationParams params;
 
-	uint32_t m_ParticleAmount = 200;
+	std::vector<Particle> m_Particles;
 };
