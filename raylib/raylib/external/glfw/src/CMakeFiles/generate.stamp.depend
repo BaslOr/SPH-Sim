@@ -1,0 +1,4 @@
+# CMake generation dependency list for this directory.
+C:/Dev/SPH-Sim/CMakeFiles/cmake.verify_globs
+C:/Dev/SPH-Sim/deps/Raylib/src/external/glfw/CMake/glfw3.pc.in
+C:/Dev/SPH-Sim/deps/Raylib/src/external/glfw/src/CMakeLists.txt

@@ -42,7 +42,7 @@ void ParticleHolder::Update()
 		force.x = -(1 / particle.Density) * gradientOfP.x;
 		force.y = -(1 / particle.Density) * gradientOfP.y;
 		
-		//force.y -= GRAVITY * particle.Mass;
+		//force.y += GRAVITY * particle.Density;
 
 		//Calculate final position, using Verlet Integration
 		Vector2 acceleration = {

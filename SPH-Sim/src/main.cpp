@@ -2,7 +2,10 @@
 #define RAYGUI_IMPLEMENTATION
 #define _CRT_SECURE_NO_WARNINGS
 #include "raygui.h"
-//#undef _CRT_SECURE_NO_WARNINGS
+
+
+#include <rlImGui.h>
+#include <imgui.h>
 
 #include "ParticleHolder.h"
 
@@ -28,6 +31,8 @@ int main(void)
 	simParams.TimeStep = 0.00001f;
 
 	ParticleHolder particleHolder(simParams);
+    
+    rlImGuiSetup(true);
 
     // Main game loop
     while (!WindowShouldClose())
@@ -42,10 +47,21 @@ int main(void)
 		particleHolder.Render();
 
         DrawDebugUI(&simParams);
+		double  fps = GetFPS();
+        DrawText(TextFormat("FPS: %.2f", fps), 10, 10, 20, BLACK);
+
+
+
+        //---------------------ImGui------------------------------------------
+        rlImGuiBegin();
+        ImGui::ShowDemoWindow();
+        rlImGuiEnd();
+        //--------------------------------------------------------------------
 
         EndDrawing();
     }
 
+    rlImGuiShutdown();
     CloseWindow();
 
     return 0;

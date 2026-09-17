@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Dev/SPH-Sim/cmake_install.cmake",
+		"C:/Dev/SPH-Sim/raylib/cmake_install.cmake",
+		"C:/Dev/SPH-Sim/raylib/raylib/cmake_install.cmake",
+		"C:/Dev/SPH-Sim/raylib/raylib/external/glfw/cmake_install.cmake",
+		"C:/Dev/SPH-Sim/raylib/raylib/external/glfw/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

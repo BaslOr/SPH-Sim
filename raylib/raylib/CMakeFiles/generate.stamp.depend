@@ -1,0 +1,23 @@
+# CMake generation dependency list for this directory.
+C:/Dev/SPH-Sim/CMakeFiles/cmake.verify_globs
+C:/Dev/SPH-Sim/deps/Raylib/cmake/CompileDefinitions.cmake
+C:/Dev/SPH-Sim/deps/Raylib/cmake/GlfwImport.cmake
+C:/Dev/SPH-Sim/deps/Raylib/cmake/InstallConfigurations.cmake
+C:/Dev/SPH-Sim/deps/Raylib/cmake/JoinPaths.cmake
+C:/Dev/SPH-Sim/deps/Raylib/cmake/LibraryConfigurations.cmake
+C:/Dev/SPH-Sim/deps/Raylib/cmake/LibraryPathToLinkerFlags.cmake
+C:/Dev/SPH-Sim/deps/Raylib/cmake/PackConfigurations.cmake
+C:/Dev/SPH-Sim/deps/Raylib/cmake/PopulateConfigVariablesLocally.cmake
+C:/Dev/SPH-Sim/deps/Raylib/cmake/raylib-config-version.cmake
+C:/Dev/SPH-Sim/deps/Raylib/cmake/raylib-config.cmake
+C:/Dev/SPH-Sim/deps/Raylib/raylib.pc.in
+C:/Dev/SPH-Sim/deps/Raylib/src/CMakeLists.txt
+C:/Program Files/CMake/share/cmake-4.4/Modules/CMakePushCheckState.cmake
+C:/Program Files/CMake/share/cmake-4.4/Modules/CPack.cmake
+C:/Program Files/CMake/share/cmake-4.4/Modules/CPackComponent.cmake
+C:/Program Files/CMake/share/cmake-4.4/Modules/CheckCSourceCompiles.cmake
+C:/Program Files/CMake/share/cmake-4.4/Modules/FindOpenGL.cmake
+C:/Program Files/CMake/share/cmake-4.4/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-4.4/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-4.4/Modules/GNUInstallDirs.cmake
+C:/Program Files/CMake/share/cmake-4.4/Templates/CPackConfig.cmake.in
